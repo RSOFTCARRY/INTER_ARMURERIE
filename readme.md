@@ -1,2 +1,0 @@
-
-# SAO_TRADE_PROJECT
