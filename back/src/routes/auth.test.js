@@ -9,13 +9,13 @@ beforeAll(async () => {
   vi.spyOn(mailer, 'sendEmail').mockImplementation(async () => {
     return true
   })
-  const user = await authService.findUserByEmail('julien.athomas+test@laplateforme.io')
+  const user = await authService.findUserByEmail('armurerieross@gmail.com')
   if (user)
     await authService.deleteUser(user.id)
 })
 
 //afterAll(async () => {
-//  const user = await authService.findUserByEmail('julien.athomas+test@laplateforme.io')
+//  const user = await authService.findUserByEmail('armurerieross@gmail.com')
 //  if (user)
 //    await authService.deleteUser(user.id)
 //})
@@ -33,7 +33,7 @@ describe("Register", () => {
     expect(jsonres.error.issues).toHaveLength(4)
   })
   test('Test register valid body', async () => {
-    const registerPayload = { email: 'julien.athomas+test@laplateforme.io', password: "tototiti", firstname: 'julien', lastname: 'athomas' }
+    const registerPayload = { email: 'armurerieross@gmail.com', password: "mvagusta750", firstname: 'Laurent', lastname: 'Rosello' }
     const res = await router.request('/register', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -61,7 +61,7 @@ describe("Login", () => {
     const res = await router.request('/login', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ email: 'toto@toto.fr', password: 'tototiti' }),
+      body: JSON.stringify({ email: 'armurerieross@gmail.com', password: 'mvagusta750' }),
     })
     expect(res.status).toBe(401)
     const jsonres = await res.json()
@@ -72,7 +72,7 @@ describe("Login", () => {
     const res = await router.request('/login', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ email: 'julien.athomas+test@laplateforme.io', password: 'tototiti' }),
+      body: JSON.stringify({ email: 'armurerieross@gmail.com', password: 'mvagusta750' }),
     })
     expect(res.status).toBe(401)
     const jsonres = await res.json()
@@ -82,7 +82,7 @@ describe("Login", () => {
   test('Test account verification', async () => {
     const verificationToken = await sign(
       {
-        email: 'julien.athomas+test@laplateforme.io',
+        email: 'armurerieross@gmail.com',
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24
       },
       env.JWT_SECRET,
@@ -98,7 +98,7 @@ describe("Login", () => {
     const res = await router.request('/login', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ email: 'julien.athomas+test@laplateforme.io', password: 'tototiti' }),
+      body: JSON.stringify({ email: 'armurerieross@gmail.com', password: 'mvagusta750' }),
     })
     expect(res.status).toBe(200)
   })
@@ -106,19 +106,19 @@ describe("Login", () => {
     const res = await router.request('/forgot-password', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ email: 'julien.athomas+test@laplateforme.io' }),
+      body: JSON.stringify({ email: 'armurerieross@gmail.com' }),
     })
     expect(res.status).toBe(200)
-    const user = await authService.findUserByEmail('julien.athomas+test@laplateforme.io')
+    const user = await authService.findUserByEmail('armurerieross@gmail.com')
     expect(user.reset_token).toBeDefined()
   })
   test('Test reset password', async () => {
-    const user = await authService.findUserByEmail('julien.athomas+test@laplateforme.io')
+    const user = await authService.findUserByEmail('armurerieross@gmail.com')
     expect(user.reset_token).toBeDefined()
     const res = await router.request('/reset-password', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ token: user.reset_token, password: "tititutu" }),
+      body: JSON.stringify({ token: user.reset_token, password: "mvagusta750" }),
     })
     expect(res.status).toBe(200)
   })
@@ -126,7 +126,7 @@ describe("Login", () => {
     const res = await router.request('/login', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ email: 'julien.athomas+test@laplateforme.io', password: 'tititutu' }),
+      body: JSON.stringify({ email: 'armurerieross@gmail.com', password: 'mvagusta750' }),
     })
     expect(res.status).toBe(200)
   })
@@ -134,7 +134,7 @@ describe("Login", () => {
     const res = await router.request('/send-verification', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ email: 'julien.athomas+test@laplateforme.io' }),
+      body: JSON.stringify({ email: 'armurerieross@gmail.com' }),
     })
     expect(res.status).toBe(200)
   })
@@ -142,7 +142,7 @@ describe("Login", () => {
   //  const res = await router.request('/reset-password', {
   //    method: 'POST',
   //    headers: new Headers({ 'Content-Type': 'application/json' }),
-  //    body: JSON.stringify({ email: 'julien.athomas+test@laplateforme.io', password: 'tototiti' }),
+  //    body: JSON.stringify({ email: 'armurerieross@gmail.com', password: 'mvagusta750' }),
   //  })
   //  expect(res.status).toBe(200)
   //})
