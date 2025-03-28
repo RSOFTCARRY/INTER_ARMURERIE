@@ -1,6 +1,7 @@
 import { LogOut, HeartHandshake, Users, ChefHat, Home } from 'lucide-react';
-import logo from '../../public/img/logo-inter-armurerie-blanc.png';
-import user_icon from '../../public/img/logo-inter-armurerie-blanc.png';
+import logo from '../../public/images/logo-inter-armurerie-blanc.png';
+import user_icon from '../../public/images/logo-inter-armurerie-blanc.png';
+import "./Header.css";
 
 export default function Header() {
   const token = localStorage.getItem('accessToken');
@@ -43,8 +44,12 @@ export default function Header() {
       ) : (
         <div className="flex items-center gap-4">
           <a className="header__connexion text-white px-4 py-2 rounded-lg flex items-center" href="/auth/login">
-            <img src={user_icon} alt="Profil Icon" className="w-5 h-5 mr-2" />
+            {/* <img src={user_icon} alt="Profil Icon" className="w-5 h-5 mr-2" /> */}
             Connexion
+          </a>
+
+          <a className="header__inscription text-white px-4 py-2 rounded-lg flex items-center" href='/auth/register' >
+            Inscription
           </a>
         </div>
       )}
