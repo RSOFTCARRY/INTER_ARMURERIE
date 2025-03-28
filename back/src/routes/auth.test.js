@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
-import router from './auth.router.js'
+import router from './auth.routes.js'
 import { sign } from 'hono/jwt'
 import env from '../config/env.js'
 import authService from '../services/auth.service.js'
